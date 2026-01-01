@@ -90,9 +90,16 @@ export class AuthService {
         return this.tokenSubject.value;
     }
 
-    getUser(): User | null {
-        return this.userSubject.value;
-    }
+      getUser(): any {
+ 
+  const user = localStorage.getItem('user');
+  return user ? JSON.parse(user) : null;
+}
+
+   setUser(user: any): void {
+  localStorage.setItem('user', JSON.stringify(user));
+  this.userSubject.next(user); // keep subject in sync
+}
 
     isAuthenticated(): boolean {
         return !!this.tokenSubject.value;
@@ -110,3 +117,4 @@ export class AuthService {
         return this.loadingSubject.value;
     }
 }
+
