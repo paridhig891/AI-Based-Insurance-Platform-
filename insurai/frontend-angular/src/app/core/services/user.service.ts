@@ -23,4 +23,9 @@ export class UserService {
     changePassword(userId: number, data: ChangePasswordRequest): Observable<any> {
         return this.http.put(`${this.apiUrl}/password?userId=${userId}`, data);
     }
+      getCurrentUser() {
+  return this.http.get(`${environment.apiBaseUrl}/client/me`);
 }
+
+}
+
